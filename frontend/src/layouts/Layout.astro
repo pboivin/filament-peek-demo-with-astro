@@ -1,8 +1,6 @@
 ---
-import Menu from '../components/Menu.astro';
-import HeaderBrand from '../components/HeaderBrand.astro';
-
-import { getMenuItems } from '../api/menus.js';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 
 import '../styles/base.css';
 
@@ -12,9 +10,6 @@ interface Props {
 }
 
 const { title, hasHeaderBrand = true } = Astro.props;
-
-const mainMenuItems = await getMenuItems('main');
-const footerMenuItems = await getMenuItems('footer');
 ---
 
 <!DOCTYPE html>
@@ -30,14 +25,7 @@ const footerMenuItems = await getMenuItems('footer');
 
     <body class="bg-white">
         <div class="flex flex-col min-h-screen">
-            <header class="bg-black text-white">
-                <div class="max-w-wide mx-auto p-2">
-                    <nav class="main-nav flex items-center">
-                        {hasHeaderBrand ? <HeaderBrand /> : ''}
-                        {mainMenuItems ? <Menu items={mainMenuItems} /> : ''}
-                    </nav>
-                </div>
-            </header>
+            <Header hasBrand={hasHeaderBrand} />
 
             <main>
                 <slot />
@@ -45,15 +33,7 @@ const footerMenuItems = await getMenuItems('footer');
 
             <div class="mt-16"></div>
 
-            <footer class="mt-auto text-center">
-                <div class="max-w-wide mx-auto p-2 text-gray-700">
-                    <div class="flex flex-col lg:flex-row items-center justify-center space-x-4">
-                        <span>Copyright © {new Date().getFullYear()} ACME inc.</span>
-
-                        {footerMenuItems ? <Menu items={footerMenuItems} /> : ''}
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     </body>
 </html>
