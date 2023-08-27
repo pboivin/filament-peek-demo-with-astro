@@ -2,12 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Home">
+<Layout title="Home" hasHeaderBrand={false}>
     <main>
         <div class="site-intro flex items-center justify-center bg-black text-white">
             <h1 class="text-[80px] lg:text-[140px]">ACME</h1>
         </div>
 
+        <!-- @todo: dynamic section -->
         <div class="max-w-wide mx-auto p-2">
             <h2 class="mt-8 text-2xl">Featured posts</h2>
 
@@ -15,7 +16,7 @@ import Layout from '../layouts/Layout.astro';
                 <div>
                     <a
                         class="block text-black"
-                        href="http://admin.acme.test:8000/blog/porro-placeat-architecto-quia-et"
+                        href="/blog-post"
                     >
                         <img
                             class="h-[200px] w-full object-cover object-center bg-gray-100"
@@ -27,13 +28,13 @@ import Layout from '../layouts/Layout.astro';
                     </a>
                     <div class="mt-1">
                         Published on Aug 26th, 2023 — in
-                        <a href="http://admin.acme.test:8000/blog?category=mountains">Mountains</a>
+                        <a href="/blog?category=mountains">Mountains</a>
                     </div>
                 </div>
                 <div>
                     <a
                         class="block text-black"
-                        href="http://admin.acme.test:8000/blog/necessitatibus-vel-soluta-atque-explicabo-architecto-commodi-enim"
+                        href="/blog-post"
                     >
                         <img
                             class="h-[200px] w-full object-cover object-center bg-gray-100"
@@ -45,7 +46,7 @@ import Layout from '../layouts/Layout.astro';
                     </a>
                     <div class="mt-1">
                         Published on Aug 25th, 2023 — in
-                        <a href="http://admin.acme.test:8000/blog?category=people">People</a>
+                        <a href="/blog?category=people">People</a>
                     </div>
                 </div>
             </div>
