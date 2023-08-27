@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::redirect('/', '/admin');
+
+Route::redirect('/login', '/admin/login')->name('login');
+
 Route::get('/preview', function () {
     abort_unless($token = request()->get('token'), 404);
 

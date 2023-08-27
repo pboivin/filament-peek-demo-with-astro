@@ -114,12 +114,6 @@ class PostResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
-                    Tables\Actions\Action::make('view_post')
-                        ->label('View')
-                        ->icon('heroicon-s-eye')
-                        ->url(fn ($record) => route('post.show', ['slug' => $record->slug]))
-                        ->openUrlInNewTab(),
-
                     Tables\Actions\EditAction::make(),
 
                     Tables\Actions\DeleteAction::make(),

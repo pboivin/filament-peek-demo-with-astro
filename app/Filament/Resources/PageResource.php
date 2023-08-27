@@ -65,12 +65,6 @@ class PageResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
-                    Tables\Actions\Action::make('view_page')
-                        ->label('View')
-                        ->icon('heroicon-s-eye')
-                        ->url(fn ($record) => route('page.show', ['slug' => $record->slug]))
-                        ->openUrlInNewTab(),
-
                     Tables\Actions\EditAction::make(),
 
                     Tables\Actions\DeleteAction::make(),
