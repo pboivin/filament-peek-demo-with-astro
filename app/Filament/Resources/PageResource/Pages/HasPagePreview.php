@@ -2,16 +2,12 @@
 
 namespace App\Filament\Resources\PageResource\Pages;
 
-use App\Filament\Fields\PageContent;
-use Filament\Forms\Components\Component;
 use Pboivin\FilamentPeek\Pages\Actions\PreviewAction;
-use Pboivin\FilamentPeek\Pages\Concerns\HasBuilderPreview;
 use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
 
 trait HasPagePreview
 {
     use HasPreviewModal;
-    use HasBuilderPreview;
 
     protected function getActions(): array
     {
@@ -20,28 +16,21 @@ trait HasPagePreview
         ];
     }
 
-    protected function getPreviewModalView(): ?string
-    {
-        return 'page.show';
-    }
-
     protected function getPreviewModalDataRecordKey(): ?string
     {
         return 'page';
     }
 
-    protected function getBuilderPreviewView(string $builderName): ?string
+    protected function getPreviewModalUrl(): ?string
     {
-        return 'page.preview-content';
-    }
+        $pageId = $this->previewModalData['page']->id ?: uniqid();
+        $userId = auth()->user()->id;
+        $token = md5("page-{$pageId}-{$userId}");
 
-    public static function getBuilderEditorSchema(string $builderName): Component|array
-    {
-        return [
-            PageContent::make(
-                name: 'content',
-                context: 'preview',
-            ),
-        ];
+        cache()->put("preview-{$token}", $this->previewModalData, 5 * 60);
+
+        // return config('app.url') . "/preview/?token={$token}";
+
+        return config('app.front_url') . "/page-preview/?token={$token}";
     }
 }

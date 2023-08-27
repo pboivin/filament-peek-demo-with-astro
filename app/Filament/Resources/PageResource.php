@@ -40,9 +40,6 @@ class PageResource extends Resource
                     ->required()
                     ->columnSpan(1)
                     ->afterStateUpdated(fn ($set, $state) => $set('slug', Str::slug($state))),
-
-                Forms\Components\TextInput::make('test')
-                    ->columnSpan(1)->tel()->regex('/^07\d{9}$/'),
             ]),
 
             Forms\Components\Actions::make([
