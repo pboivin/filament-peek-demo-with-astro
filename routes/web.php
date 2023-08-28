@@ -21,18 +21,26 @@ Route::get('/preview', function () {
 Route::prefix('/content')->group(function () {
     Route::get('/posts', function () {
         return Post::published()
+            ->with('category')
             ->orderByDesc('published_at')
             ->get(['id', 'slug', 'title']);
     });
 
     Route::get('/posts/featured', function () {
         return Post::featured()
+            ->with('category')
             ->orderByDesc('published_at')
-            ->get(['id', 'slug', 'title']);
+            ->get()
+            ->map(fn ($post) => $post->toCardData());
     });
 
     Route::get('/post/{id}', function (int $id) {
-        abort_unless($post = Post::published()->find($id), 404);
+        abort_unless(
+            $post = Post::published()
+                ->with('category')
+                ->find($id),
+            404
+        );
 
         return $post;
     });

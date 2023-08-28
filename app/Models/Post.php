@@ -58,4 +58,16 @@ class Post extends Model
 
         return $this->main_image_url;
     }
+
+    public function toCardData(): array
+    {
+        return [
+            'id' => $this->id,
+            'slug' => $this->slug,
+            'title' => $this->title,
+            'main_image' => $this->getMainImage() ?: '',
+            'published_at' => $this->published_at?->format('M jS, Y') ,
+            'category' => $this->category->only(['name', 'slug']),
+        ];
+    }
 }
