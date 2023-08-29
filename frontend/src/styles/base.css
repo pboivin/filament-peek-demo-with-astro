@@ -12,6 +12,10 @@ a, .prose a {
     @apply bg-gray-200;
 }
 
+body.is-preview a {
+    pointer-events: none !important;
+}
+
 @tailwind components;
 
 .main-nav {

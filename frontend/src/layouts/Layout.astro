@@ -7,9 +7,10 @@ import '../styles/base.css';
 interface Props {
     title: string;
     hasHeaderBrand?: boolean;
+    isPreview?: boolean;
 }
 
-const { title, hasHeaderBrand = true } = Astro.props;
+const { title, hasHeaderBrand = true, isPreview = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -23,7 +24,12 @@ const { title, hasHeaderBrand = true } = Astro.props;
         <title>{title}</title>
     </head>
 
-    <body class="bg-white">
+    <body
+        class:list={{
+            'bg-white': true,
+            'is-preview': isPreview,
+        }}
+    >
         <div class="flex flex-col min-h-screen">
             <Header hasBrand={hasHeaderBrand} />
 
