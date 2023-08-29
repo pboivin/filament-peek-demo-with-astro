@@ -5,3 +5,9 @@ export async function getFeaturedPosts() {
 
     return (await response.json()) || [];
 }
+
+export async function getPosts() {
+    const response = await fetch(`${API_BASE}/content/posts`);
+
+    return (await response.json()) || [];
+}

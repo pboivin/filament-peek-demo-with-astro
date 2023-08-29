@@ -23,7 +23,8 @@ Route::prefix('/content')->group(function () {
         return Post::published()
             ->with('category')
             ->orderByDesc('published_at')
-            ->get(['id', 'slug', 'title']);
+            ->get()
+            ->map(fn ($post) => $post->toCardData());
     });
 
     Route::get('/posts/featured', function () {
