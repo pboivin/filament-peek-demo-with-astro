@@ -1,5 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
+
+import { getPosts } from '../../api/posts';
+
+export async function getStaticPaths() {
+    const posts = await getPosts();
+
+    return posts.map(post => ({params: {slug: post.slug}}));
+}
+
+const { slug } = Astro.params;
 ---
 
 <Layout title="Blog post">
@@ -68,7 +78,7 @@ import Layout from '../layouts/Layout.astro';
 
                 <hr />
 
-                 Published on Aug 26th, 2023 — in <a href="/blog?category=mountains">Mountains</a>
+                 Published on Aug 26th, 2023 — in <a href="/blog/?category=mountains">Mountains</a>
 
                 <div>
                     <h2>See also</h2>

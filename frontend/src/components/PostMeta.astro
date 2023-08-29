@@ -2,17 +2,17 @@
 interface Props {
     date?: string;
     categoryName: string;
-    categoryUrl: string;
+    categorySlug: string;
 }
 
-const { date, categoryName, categoryUrl } = Astro.props;
+const { date, categoryName, categorySlug } = Astro.props;
 ---
 
 {
     date ? (
         <div>
             Published on {date} — in
-            <a href={categoryUrl}>{categoryName}</a>
+            <a href={`/blog/?category=${categorySlug}`}>{categoryName}</a>
         </div>
     ) : (
         <div>[Not published]</div>

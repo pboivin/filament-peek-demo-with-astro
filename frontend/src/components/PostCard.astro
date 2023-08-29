@@ -2,23 +2,25 @@
 import PostMeta from './PostMeta.astro';
 
 interface Props {
-    url: string;
+    slug: string;
     image: string;
     title: string;
     date?: string;
     categoryName: string;
-    categoryUrl: string;
+    categorySlug: string;
 }
 
-const { url, image, title, date, categoryName, categoryUrl } = Astro.props;
+const { slug, image, title, date, categoryName, categorySlug } = Astro.props;
 ---
 
-<div>
-    <a class="block text-black" href={url}>
+<div
+    data-category={categorySlug}
+>
+    <a class="block text-black" href={`/blog/${slug}`}>
         <img class="h-[200px] w-full object-cover object-center bg-gray-100" src={image} alt="" loading="lazy" />
         <h2 class="mt-3 text-xl">{title}</h2>
     </a>
     <div class="mt-1">
-        <PostMeta date={date} categoryName={categoryName} categoryUrl={categoryUrl} />
+        <PostMeta date={date} categoryName={categoryName} categorySlug={categorySlug} />
     </div>
 </div>

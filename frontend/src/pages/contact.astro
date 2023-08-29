@@ -13,7 +13,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="max-w-wide mx-auto p-2">
             <div
                 class="max-w-[600px] mt-8 mx-auto"
-                x-data="{
+                x-data={`{
                     isSent: false,
                     values: {},
                     errors: {},
@@ -29,12 +29,9 @@ import Layout from '../layouts/Layout.astro';
                             this.isSent = true;
                         }
                     },
-                }"
+                }`}
             >
-                <form
-                    x-on:submit.prevent="submit"
-                    x-show="!isSent"
-                >
+                <form x-on:submit.prevent="submit" x-show="!isSent">
                     <div class="mt-4">
                         <div>
                             <label for="name_input" class="block text-sm font-medium text-gray-700">Name</label>
@@ -105,10 +102,7 @@ import Layout from '../layouts/Layout.astro';
                     </div>
                 </form>
 
-                <div
-                    class="text-center"
-                    x-text="isSent ? 'Thank you, we’ll be in touch!' : ''"
-                ></div>
+                <div class="text-center" x-text="isSent ? 'Thank you, we’ll be in touch!' : ''"></div>
             </div>
         </div>
     </main>

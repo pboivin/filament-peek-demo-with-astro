@@ -16,17 +16,16 @@ const featuredPosts = await getFeaturedPosts();
         <div class="max-w-wide mx-auto p-2">
             <h2 class="mt-8 text-2xl">Featured posts</h2>
 
-            <!-- @todo: fix urls -->
             <div class="mt-10 grid gap-8 grid-cols-1 lg:grid-cols-2">
                 {
-                    featuredPosts.map((featuredPost) => (
+                    featuredPosts.map((post) => (
                         <PostCard
-                            url={`/blog-post/?slug=${featuredPost.slug}`}
-                            image={featuredPost.main_image}
-                            title={featuredPost.title}
-                            date={featuredPost.published_at}
-                            categoryName={featuredPost.category.name}
-                            categoryUrl={`/blog/?category=${featuredPost.category.slug}`}
+                            slug={post.slug}
+                            image={post.main_image}
+                            title={post.title}
+                            date={post.published_at}
+                            categoryName={post.category.name}
+                            categorySlug={post.category.slug}
                         />
                     ))
                 }
