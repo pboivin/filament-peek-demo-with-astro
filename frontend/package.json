@@ -10,7 +10,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/alpinejs": "^0.2.2",
     "@astrojs/tailwind": "^4.0.0",
+    "@types/alpinejs": "^3.7.2",
+    "alpinejs": "^3.13.0",
     "astro": "^2.10.14",
     "tailwindcss": "^3.3.3"
   }
