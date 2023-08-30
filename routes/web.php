@@ -27,6 +27,15 @@ Route::prefix('/content')->group(function () {
             ->map(fn ($post) => $post->toCardData());
     });
 
+    Route::get('/posts/category/{slug}', function (string $slug) {
+        return Post::published()
+            ->with('category')
+            ->whereHas('category', fn ($q) => $q->whereSlug($slug))
+            ->orderByDesc('published_at')
+            ->get()
+            ->map(fn ($post) => $post->toCardData());
+    });
+
     Route::get('/posts/featured', function () {
         return Post::featured()
             ->with('category')

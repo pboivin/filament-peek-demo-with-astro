@@ -11,3 +11,9 @@ export async function getPosts() {
 
     return (await response.json()) || [];
 }
+
+export async function getPostsForCategory(slug) {
+    const response = await fetch(`${API_BASE}/content/posts/category/${slug}`);
+
+    return (await response.json()) || [];
+}
