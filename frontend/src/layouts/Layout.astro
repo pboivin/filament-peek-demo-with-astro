@@ -8,9 +8,10 @@ interface Props {
     title: string;
     hasHeaderBrand?: boolean;
     isPreview?: boolean;
+    redirect?: string;
 }
 
-const { title, hasHeaderBrand = true, isPreview = false } = Astro.props;
+const { title, hasHeaderBrand = true, isPreview = false, redirect = null } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -21,9 +22,12 @@ const { title, hasHeaderBrand = true, isPreview = false } = Astro.props;
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
+        {redirect ? <meta http-equiv="refresh" content={`0; url=${redirect}`} /> : ''}
         <title>{title}</title>
         <style is:inline>
-            [x-cloak] { display: none; }
+            [x-cloak] {
+                display: none;
+            }
         </style>
     </head>
 

@@ -1,111 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import PostCard from '../../components/PostCard.astro';
+import PostList from '../../components/PostList.astro';
 
 import { getPosts } from '../../api/posts';
 import { getCategories } from '../../api/categories';
 
 const posts = await getPosts();
 const categories = await getCategories();
-
-console.log(posts);
-console.log(categories);
 ---
 
-<Layout title="Blog index">
-    <main
-        x-data={`{
-            isReady: false,
-            postCount: $el.dataset.initialPostCount,
-            category: '',
-
-            updatePostCount() {
-                this.postCount = this.$el.querySelectorAll('.is-post-visible').length;
-            },
-
-            updateQueryString() {
-                const query = new URLSearchParams(window.location.search);
-
-                if (this.category) {
-                    query.set('category', this.category || null);
-
-                    window.history.replaceState(null, null, "?" + query.toString());
-                } else {
-                    window.history.replaceState(null, null, window.location.pathname);
-                }
-            },
-
-            initializeCategory() {
-                const query = new URLSearchParams(window.location.search);
-
-                this.category = query.get('category') || '';
-            },
-
-            onCategoryUpdated() {
-                this.updateQueryString();
-
-                this.$nextTick(() => this.updatePostCount());
-            },
-
-            init() {
-                this.initializeCategory();
-
-                this.$watch('category', () => this.onCategoryUpdated());
-
-                this.$nextTick(() => {
-                    this.isReady = true;
-
-                    this.updatePostCount();
-                });
-            },
-        }`}
-        x-transition.opacity.duration.200ms
-        x-show="isReady"
-        x-cloak
-        data-initial-post-count={posts.length}
-    >
-        <div class="relative min-h-[200px] flex items-center justify-center bg-gray-100">
-            <div class="relative z-1 p-2 text-4xl text-gray-700 lg:text-6xl">
-                <h1>All Posts</h1>
-            </div>
-        </div>
-
-        <div class="max-w-wide mx-auto p-2">
-            <div class="mt-8 flex flex-col gap-4 lg:items-center lg:flex-row">
-                <div>
-                    <select
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm"
-                        name="category"
-                        x-model="category"
-                    >
-                        <option value="">All categories</option>
-                        {categories.map((category) => <option value={category.slug}>{category.name}</option>)}
-                    </select>
-                </div>
-
-                <div class="lg:ml-auto" x-text="`Found ${postCount} posts`"></div>
-            </div>
-
-            <div class="mt-10 grid gap-8 grid-cols-1 lg:grid-cols-2">
-                {
-                    posts.map((post) => (
-                        <div
-                            x-transition.opacity.delay.100ms.duration.200ms
-                            x-show={`(!category || category === '${post.category.slug}')`}
-                            x-bind:class={`(!category || category === '${post.category.slug}') ? 'is-post-visible' : ''`}
-                        >
-                            <PostCard
-                                slug={post.slug}
-                                image={post.main_image}
-                                title={post.title}
-                                date={post.published_at}
-                                categoryName={post.category.name}
-                                categorySlug={post.category.slug}
-                            />
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
-    </main>
+<Layout title="Blog">
+    <PostList posts={posts} categories={categories} title="All Posts" activeCategory="" />
 </Layout>

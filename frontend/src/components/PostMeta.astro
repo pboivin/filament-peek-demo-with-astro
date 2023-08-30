@@ -12,7 +12,7 @@ const { date, categoryName, categorySlug } = Astro.props;
     date ? (
         <div>
             Published on {date} — in
-            <a href={`/blog/?category=${categorySlug}`}>{categoryName}</a>
+            <a href={`/category/${categorySlug}`}>{categoryName}</a>
         </div>
     ) : (
         <div>[Not published]</div>
