@@ -1,9 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PagePreviewContainer from '../components/PagePreviewContainer.jsx';
 ---
 
 <Layout title="Preview" isPreview={true}>
-    <main class="p-8">
-        This is a page preview
-    </main>
+    <PagePreviewContainer client:only />
 </Layout>
