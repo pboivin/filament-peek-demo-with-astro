@@ -2,17 +2,12 @@
 
 namespace App\Filament\Resources\PostResource\Pages;
 
-use App\Filament\Fields\PostContent;
-use App\Filament\Fields\PostFooter;
-use Filament\Forms\Components\Component;
 use Pboivin\FilamentPeek\Pages\Actions\PreviewAction;
-use Pboivin\FilamentPeek\Pages\Concerns\HasBuilderPreview;
 use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
 
 trait HasPostPreview
 {
     use HasPreviewModal;
-    use HasBuilderPreview;
 
     protected function getActions(): array
     {
@@ -21,40 +16,19 @@ trait HasPostPreview
         ];
     }
 
-    protected function getPreviewModalView(): ?string
-    {
-        return 'post.show';
-    }
-
     protected function getPreviewModalDataRecordKey(): ?string
     {
         return 'post';
     }
 
-    protected function getBuilderPreviewView(string $builderName): ?string
+    protected function getPreviewModalUrl(): ?string
     {
-        return match ($builderName) {
-            'content_blocks' => 'post.preview-content',
-            'footer_blocks' => 'post.preview-footer',
-        };
-    }
+        $postId = $this->previewModalData['post']->id ?: uniqid();
+        $userId = auth()->user()->id;
+        $token = md5("post-{$postId}-{$userId}");
 
-    public static function getBuilderEditorSchema(string $builderName): Component|array
-    {
-        return match ($builderName) {
-            'content_blocks' => PostContent::make(
-                name: 'content_blocks',
-                context: 'preview',
-            )
-                ->label('Content')
-                ->columnSpanFull(),
+        cache()->put("preview-{$token}", $this->previewModalData, 5 * 60);
 
-            'footer_blocks' => PostFooter::make(
-                name: 'footer_blocks',
-                context: 'preview',
-            )
-                ->label('Footer')
-                ->columnSpanFull(),
-        };
+        return config('app.front_url') . "/preview/post/?token={$token}";
     }
 }

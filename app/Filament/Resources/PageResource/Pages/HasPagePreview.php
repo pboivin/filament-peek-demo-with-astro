@@ -29,8 +29,6 @@ trait HasPagePreview
 
         cache()->put("preview-{$token}", $this->previewModalData, 5 * 60);
 
-        // return config('app.url') . "/preview/?token={$token}";
-
-        return config('app.front_url') . "/page-preview/?token={$token}";
+        return config('app.front_url') . "/preview/page/?token={$token}";
     }
 }
