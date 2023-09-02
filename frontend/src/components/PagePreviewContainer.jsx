@@ -14,5 +14,13 @@ const token = getToken();
 const previewData = token ? await getPreview(token) : null;
 
 export default function PagePreviewContainer() {
-    return <>{!previewData ? <div class="p-8 text-center text-red-500">Not available</div> : <PageContent page={previewData.page} />}</>;
+    return (
+        <>
+            {!previewData ? (
+                <div class="p-8 text-center text-red-500">Not available</div>
+            ) : (
+                <PageContent page={previewData.page} />
+            )}
+        </>
+    );
 }
