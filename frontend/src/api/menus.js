@@ -1,20 +1,16 @@
-import { API_BASE } from "../constants";
-
-let cachedMenus = null;
+import { API_BASE } from '../constants';
 
 export async function getMenus() {
-    if (!cachedMenus) {
-        const response = await fetch(`${API_BASE}/content/menus`);
-        const data = await response.json();
+    const response = await fetch(`${API_BASE}/content/menus`);
+    const data = await response.json();
 
-        cachedMenus = {};
+    const menus = {};
 
-        for (let menu of data) {
-            cachedMenus[menu.name] = menu.items;
-        }
+    for (let menu of data) {
+        menus[menu.name] = menu.items;
     }
 
-    return cachedMenus;
+    return menus;
 }
 
 export async function getMenuItems(name) {
