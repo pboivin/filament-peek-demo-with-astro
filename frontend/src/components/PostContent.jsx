@@ -4,8 +4,6 @@ import PostMeta from './PostMeta.jsx';
 import RenderBlocks from './RenderBlocks.jsx';
 
 export default function PostContent({ post, category }) {
-    console.log(post);
-
     return (
         <main>
             <div class="relative min-h-[200px] flex items-center justify-center bg-black">
@@ -33,28 +31,17 @@ export default function PostContent({ post, category }) {
 
                     <PostMeta date={post.published_at} categoryName={category?.name} categorySlug={category?.slug} />
 
-                    <RenderBlocks blocks={post.footer_blocks} />
+                    {post.footer_blocks && post.footer_blocks.length > 0 ? (
+                        <div>
+                            <h2>See also</h2>
 
-                    {/*
-                    <div>
-                        <h2>See also</h2>
-
-                        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
-                            <a class="block relative aspect-[4/3] border bg-gray-100" href="/blog-post">
-                                <img
-                                    class="absolute top-0 left-0 w-full h-full p-0 m-0 opacity-20 object-center object-cover"
-                                    src="https://picsum.photos/id/219/800/600"
-                                    alt=""
-                                />
-                                <div class="relative z-1 p-4">Dolorum libero qui soluta deleniti</div>
-                            </a>
-                            <a class="aspect-[4/3] p-4 border bg-gray-100" href="/about">
-                                {' '}
-                                About Us
-                            </a>
+                            <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
+                                <RenderBlocks blocks={post.footer_blocks} />
+                            </div>
                         </div>
-                    </div>
-                    */}
+                    ) : (
+                        ''
+                    )}
                 </div>
             </div>
         </main>
