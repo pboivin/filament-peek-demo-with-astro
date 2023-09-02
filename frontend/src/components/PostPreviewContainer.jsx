@@ -14,5 +14,13 @@ const token = getToken();
 const previewData = token ? await getPreview(token) : null;
 
 export default function PostPreviewContainer() {
-    return <>{!previewData ? <div class="p-8 text-center text-red-500">Not available</div> : <PostContent post={previewData.post} />}</>;
+    return (
+        <>
+            {previewData ? (
+                <PostContent post={previewData.post} category={previewData.post.category} />
+            ) : (
+                <div class="p-8 text-center text-red-500">Not available</div>
+            )}
+        </>
+    );
 }

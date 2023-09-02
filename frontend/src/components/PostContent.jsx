@@ -1,5 +1,6 @@
 import { h, Fragment } from 'preact';
 
+import PostMeta from './PostMeta.jsx';
 import RenderBlocks from './RenderBlocks.jsx';
 
 export default function PostContent({ post, category }) {
@@ -8,10 +9,14 @@ export default function PostContent({ post, category }) {
     return (
         <main>
             <div class="relative min-h-[200px] flex items-center justify-center bg-black">
-                <div
-                    class="absolute inset-0 z-0 opacity-50"
-                    style="background-image: url(https://picsum.photos/id/353/800/600); background-size: cover; background-position: center;"
-                ></div>
+                {post.main_image ? (
+                    <div
+                        class="absolute inset-0 z-0 opacity-50"
+                        style={`background-image: url(${post.main_image}); background-size: cover; background-position: center;`}
+                    ></div>
+                ) : (
+                    ''
+                )}
 
                 <div class="relative z-1 p-2 text-4xl text-gray-700 lg:text-6xl">
                     <div class="text-4xl text-white">
@@ -23,7 +28,6 @@ export default function PostContent({ post, category }) {
             <div class="max-w-wide mx-auto p-2">
                 <div class="prose mt-8 mx-auto text-black">
                     <RenderBlocks blocks={post.content_blocks} />
-
                     {/*
                     <h2>Sed eu consequat purus</h2>
                     <p>
@@ -78,7 +82,8 @@ export default function PostContent({ post, category }) {
                     */}
 
                     <hr />
-                    Published on Aug 26th, 2023 — in <a href="/blog/?category=mountains">Mountains</a>
+
+                    <PostMeta date={post.published_at} categoryName={category?.name} categorySlug={category?.slug} />
 
                     <RenderBlocks blocks={post.footer_blocks} />
                     {/*
