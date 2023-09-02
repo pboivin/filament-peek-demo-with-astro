@@ -21,6 +21,15 @@ trait HasPostPreview
         return 'post';
     }
 
+    protected function mutatePreviewModalData(array $data): array
+    {
+        if ($data['post']->category_id) {
+            $data['post']->loadMissing('category');
+        }
+
+        return $data;
+    }
+
     protected function getPreviewModalUrl(): ?string
     {
         $postId = $this->previewModalData['post']->id ?: uniqid();
