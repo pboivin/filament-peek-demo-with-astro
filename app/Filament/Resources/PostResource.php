@@ -12,7 +12,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
 
 class PostResource extends Resource
 {
@@ -55,28 +54,12 @@ class PostResource extends Resource
             ]),
 
             Forms\Components\Section::make('Post Content')->schema([
-                Forms\Components\Actions::make([
-                    InlinePreviewAction::make()
-                        ->label('Preview Content Blocks')
-                        ->builderPreview('content_blocks')
-                ])
-                    ->columnSpanFull()
-                    ->alignRight(),
-
                 PostContent::make('content_blocks')
                     ->label('Blocks')
                     ->columnSpanFull(),
             ])->collapsible(),
 
             Forms\Components\Section::make('Post Footer')->schema([
-                Forms\Components\Actions::make([
-                    InlinePreviewAction::make()
-                        ->label('Open Footer Editor')
-                        ->builderPreview('footer_blocks')
-                ])
-                    ->columnSpanFull()
-                    ->alignRight(),
-
                 PostFooter::make('footer_blocks')
                     ->label('Blocks')
                     ->columnSpanFull(),
