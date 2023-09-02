@@ -63,8 +63,8 @@ Route::prefix('/content')->group(function () {
         return Page::get(['id', 'slug', 'title']);
     });
 
-    Route::get('/page/{id}', function (int $id) {
-        abort_unless($page = Page::find($id), 404);
+    Route::get('/page/{slug}', function (string $slug) {
+        abort_unless($page = Page::whereSlug($slug)->first(), 404);
 
         return $page;
     });
