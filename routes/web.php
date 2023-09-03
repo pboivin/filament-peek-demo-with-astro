@@ -1,5 +1,8 @@
 <?php
 
+use App\Data\CategoryData;
+use App\Data\MenuData;
+use App\Data\PageData;
 use App\Data\PostData;
 use App\Models\Category;
 use App\Models\Menu;
@@ -23,7 +26,7 @@ Route::prefix('/content')->group(function () {
             ->with('category')
             ->orderByDesc('published_at')
             ->get()
-            ->map(fn ($post) => PostData::from($post));
+            ->map(fn ($post) => PostData::from($post)->toListItem());
     });
 
     Route::get('/posts/category/{slug}', function (string $slug) {
@@ -32,7 +35,7 @@ Route::prefix('/content')->group(function () {
             ->whereHas('category', fn ($q) => $q->whereSlug($slug))
             ->orderByDesc('published_at')
             ->get()
-            ->map(fn ($post) => PostData::from($post));
+            ->map(fn ($post) => PostData::from($post)->toListItem());
     });
 
     Route::get('/posts/featured', function () {
@@ -40,7 +43,7 @@ Route::prefix('/content')->group(function () {
             ->with('category')
             ->orderByDesc('published_at')
             ->get()
-            ->map(fn ($post) => PostData::from($post));
+            ->map(fn ($post) => PostData::from($post)->toListItem());
     });
 
     Route::get('/post/{id}', function (int $id) {
@@ -51,24 +54,30 @@ Route::prefix('/content')->group(function () {
             404
         );
 
-        return $post;
+        return PostData::from($post);
     });
 
     Route::get('/categories', function () {
-        return Category::orderBy('name')->get(['name', 'slug']);
+        return Category::orderBy('name')
+            ->get()
+            ->map(fn ($category) => CategoryData::from($category));
     });
 
     Route::get('/pages', function () {
-        return Page::get(['id', 'slug', 'title']);
+        return Page::orderBy('title')
+            ->get()
+            ->map(fn ($page) => PageData::from($page)->toListItem());
     });
 
     Route::get('/page/{slug}', function (string $slug) {
         abort_unless($page = Page::whereSlug($slug)->first(), 404);
 
-        return $page;
+        return PageData::from($page);
     });
 
     Route::get('/menus', function () {
-        return Menu::get(['name', 'items']);
+        return Menu::orderBy('name')
+            ->get()
+            ->map(fn ($menu) => MenuData::from($menu));
     });
 });

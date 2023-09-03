@@ -3,6 +3,7 @@
 namespace App\Data;
 
 use App\Models\Post;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Spatie\LaravelData\Data;
 
@@ -47,5 +48,13 @@ class PostData extends Data
         }
 
         return $post->main_image_url ?: '';
+    }
+
+    public function toListItem(): array
+    {
+        return Arr::except($this->toArray(), [
+            'content_blocks',
+            'footer_blocks',
+        ]);
     }
 }

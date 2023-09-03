@@ -2,6 +2,7 @@
 
 namespace App\Data;
 
+use Illuminate\Support\Arr;
 use Spatie\LaravelData\Data;
 
 class PageData extends Data
@@ -12,5 +13,10 @@ class PageData extends Data
         public string $slug,
         public string $content,
     ) {
+    }
+
+    public function toListItem(): array
+    {
+        return Arr::except($this->toArray(), ['content']);
     }
 }
