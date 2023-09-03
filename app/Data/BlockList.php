@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 
 class BlockList
 {
-    public static function blocks(array $data): array
+    public static function transform(array $data): array
     {
         return collect($data)
             ->map(function ($block) {

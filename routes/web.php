@@ -3,7 +3,9 @@
 use App\Data\CategoryData;
 use App\Data\MenuData;
 use App\Data\PageData;
+use App\Data\PageReferenceData;
 use App\Data\PostData;
+use App\Data\PostReferenceData;
 use App\Models\Category;
 use App\Models\Menu;
 use App\Models\Page;
@@ -26,7 +28,7 @@ Route::prefix('/content')->group(function () {
             ->with('category')
             ->orderByDesc('published_at')
             ->get()
-            ->map(fn ($post) => PostData::from($post)->toListItem());
+            ->map(fn ($post) => PostReferenceData::from($post));
     });
 
     Route::get('/posts/category/{slug}', function (string $slug) {
@@ -35,7 +37,7 @@ Route::prefix('/content')->group(function () {
             ->whereHas('category', fn ($q) => $q->whereSlug($slug))
             ->orderByDesc('published_at')
             ->get()
-            ->map(fn ($post) => PostData::from($post)->toListItem());
+            ->map(fn ($post) => PostReferenceData::from($post));
     });
 
     Route::get('/posts/featured', function () {
@@ -43,7 +45,7 @@ Route::prefix('/content')->group(function () {
             ->with('category')
             ->orderByDesc('published_at')
             ->get()
-            ->map(fn ($post) => PostData::from($post)->toListItem());
+            ->map(fn ($post) => PostReferenceData::from($post));
     });
 
     Route::get('/post/{id}', function (int $id) {
@@ -66,7 +68,7 @@ Route::prefix('/content')->group(function () {
     Route::get('/pages', function () {
         return Page::orderBy('title')
             ->get()
-            ->map(fn ($page) => PageData::from($page)->toListItem());
+            ->map(fn ($page) => PageReferenceData::from($page));
     });
 
     Route::get('/page/{slug}', function (string $slug) {
