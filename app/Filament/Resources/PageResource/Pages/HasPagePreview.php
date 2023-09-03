@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\PageResource\Pages;
 
+use App\Data\PageData;
 use Pboivin\FilamentPeek\Pages\Actions\PreviewAction;
 use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
 
@@ -19,6 +20,13 @@ trait HasPagePreview
     protected function getPreviewModalDataRecordKey(): ?string
     {
         return 'page';
+    }
+
+    protected function mutatePreviewModalData(array $data): array
+    {
+        $data['page'] = PageData::from($data['page']);
+
+        return $data;
     }
 
     protected function getPreviewModalUrl(): ?string

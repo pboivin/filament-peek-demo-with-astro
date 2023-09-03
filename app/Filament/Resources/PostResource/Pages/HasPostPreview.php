@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\PostResource\Pages;
 
+use App\Data\PostData;
 use Pboivin\FilamentPeek\Pages\Actions\PreviewAction;
 use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
 
@@ -26,6 +27,8 @@ trait HasPostPreview
         if ($data['post']->category_id) {
             $data['post']->loadMissing('category');
         }
+
+        $data['post'] = PostData::from($data['post']);
 
         return $data;
     }
