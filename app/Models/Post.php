@@ -32,14 +32,14 @@ class Post extends Model
         'footer_blocks' => 'array',
     ];
 
-    protected $appends = [
-        'main_image',
-    ];
+    // protected $appends = [
+    //     'main_image',
+    // ];
 
-    protected function serializeDate(DateTimeInterface $date): string
-    {
-        return $date->format('M jS, Y');
-    }
+    // protected function serializeDate(DateTimeInterface $date): string
+    // {
+    //     return $date->format('M jS, Y');
+    // }
 
     public function scopePublished($query)
     {
@@ -60,24 +60,24 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function getMainImageAttribute()
-    {
-        if ($this->main_image_upload) {
-            return url(Storage::url($this->main_image_upload));
-        }
+    // public function getMainImageAttribute()
+    // {
+    //     if ($this->main_image_upload) {
+    //         return url(Storage::url($this->main_image_upload));
+    //     }
 
-        return $this->main_image_url;
-    }
+    //     return $this->main_image_url;
+    // }
 
-    public function toCardData(): array
-    {
-        return [
-            'id' => $this->id,
-            'slug' => $this->slug,
-            'title' => $this->title,
-            'main_image' => $this->main_image ?: '',
-            'published_at' => $this->published_at?->format('M jS, Y') ,
-            'category' => $this->category->only(['name', 'slug']),
-        ];
-    }
+    // public function toCardData(): array
+    // {
+    //     return [
+    //         'id' => $this->id,
+    //         'slug' => $this->slug,
+    //         'title' => $this->title,
+    //         'main_image' => $this->main_image ?: '',
+    //         'published_at' => $this->published_at?->format('M jS, Y') ,
+    //         'category' => $this->category->only(['name', 'slug']),
+    //     ];
+    // }
 }
