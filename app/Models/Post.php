@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
@@ -32,15 +31,6 @@ class Post extends Model
         'footer_blocks' => 'array',
     ];
 
-    // protected $appends = [
-    //     'main_image',
-    // ];
-
-    // protected function serializeDate(DateTimeInterface $date): string
-    // {
-    //     return $date->format('M jS, Y');
-    // }
-
     public function scopePublished($query)
     {
         return $query
@@ -55,29 +45,8 @@ class Post extends Model
             ->where('is_featured', true);
     }
 
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
-
-    // public function getMainImageAttribute()
-    // {
-    //     if ($this->main_image_upload) {
-    //         return url(Storage::url($this->main_image_upload));
-    //     }
-
-    //     return $this->main_image_url;
-    // }
-
-    // public function toCardData(): array
-    // {
-    //     return [
-    //         'id' => $this->id,
-    //         'slug' => $this->slug,
-    //         'title' => $this->title,
-    //         'main_image' => $this->main_image ?: '',
-    //         'published_at' => $this->published_at?->format('M jS, Y') ,
-    //         'category' => $this->category->only(['name', 'slug']),
-    //     ];
-    // }
 }
