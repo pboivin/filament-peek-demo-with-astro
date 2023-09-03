@@ -10,18 +10,18 @@ use Spatie\LaravelData\Data;
 class PostData extends Data
 {
     public function __construct(
-        public int $id,
         public string $title,
         public string $slug,
         public bool $is_featured,
         public string $main_image,
 
-        // wip
+        // @todo: add block DTOs
         public array $content_blocks,
         public array $footer_blocks,
 
         public CategoryData $category,
 
+        public ?int $id = null,
         public ?string $published_at = null,
     ) {
     }
@@ -44,7 +44,7 @@ class PostData extends Data
     public static function getMainImage(Post $post): string
     {
         if ($post->main_image_upload) {
-            return Storage::url($post->main_image_upload);
+            return Storage::disk('public')->url($post->main_image_upload);
         }
 
         return $post->main_image_url ?: '';
