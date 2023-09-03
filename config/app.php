@@ -59,7 +59,7 @@ return [
 
     'front_url' => env('FRONT_URL', 'http://localhost'),
 
-    'asset_url' => env('ASSET_URL'),
+    'media_url' => env('MEDIA_URL'),
 
     /*
     |--------------------------------------------------------------------------
