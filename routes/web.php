@@ -1,5 +1,6 @@
 <?php
 
+use App\Data\PostData;
 use App\Models\Category;
 use App\Models\Menu;
 use App\Models\Page;
@@ -22,7 +23,7 @@ Route::prefix('/content')->group(function () {
             ->with('category')
             ->orderByDesc('published_at')
             ->get()
-            ->map(fn ($post) => $post->toCardData());
+            ->map(fn ($post) => PostData::from($post));
     });
 
     Route::get('/posts/category/{slug}', function (string $slug) {
@@ -31,7 +32,7 @@ Route::prefix('/content')->group(function () {
             ->whereHas('category', fn ($q) => $q->whereSlug($slug))
             ->orderByDesc('published_at')
             ->get()
-            ->map(fn ($post) => $post->toCardData());
+            ->map(fn ($post) => PostData::from($post));
     });
 
     Route::get('/posts/featured', function () {
@@ -39,7 +40,7 @@ Route::prefix('/content')->group(function () {
             ->with('category')
             ->orderByDesc('published_at')
             ->get()
-            ->map(fn ($post) => $post->toCardData());
+            ->map(fn ($post) => PostData::from($post));
     });
 
     Route::get('/post/{id}', function (int $id) {
