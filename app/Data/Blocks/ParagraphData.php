@@ -11,7 +11,7 @@ class ParagraphData extends Data
     ) {
     }
 
-    public static function block(array $block): static
+    public static function fromArray(array $block): static
     {
         return new static(
             text: (string) ($block['data']['text'] ?? ''),

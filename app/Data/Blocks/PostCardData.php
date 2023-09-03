@@ -14,7 +14,7 @@ class PostCardData extends Data
     ) {
     }
 
-    public static function block(array $block): static
+    public static function fromArray(array $block): static
     {
         $post = Post::find($block['data']['post_id'] ?? 0);
 

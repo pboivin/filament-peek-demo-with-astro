@@ -14,7 +14,7 @@ class PageCardData extends Data
     ) {
     }
 
-    public static function block(array $block): static
+    public static function fromArray(array $block): static
     {
         $page = Page::find($block['data']['page_id'] ?? 0);
 

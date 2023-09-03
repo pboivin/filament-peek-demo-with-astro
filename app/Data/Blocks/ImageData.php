@@ -3,8 +3,9 @@
 namespace App\Data\Blocks;
 
 use App\Helpers\Image;
+use Spatie\LaravelData\Data;
 
-class ImageData
+class ImageData extends Data
 {
     public function __construct(
         public string $image,
@@ -14,7 +15,7 @@ class ImageData
     ) {
     }
 
-    public static function block(array $block): static
+    public static function fromArray(array $block): static
     {
         return new static(
             image: Image::imageOrUrl($block['data']['image'] ?? '', $block['data']['url'] ?? ''),
