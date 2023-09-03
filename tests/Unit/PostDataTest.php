@@ -7,6 +7,7 @@ use App\Data\PostData;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class PostDataTest extends TestCase
@@ -67,11 +68,11 @@ class PostDataTest extends TestCase
                 ->for(Category::factory())
                 ->create([
                     'main_image_upload' => null,
-                    'main_image_url' => $src = 'http://example.com/image.jpg',
+                    'main_image_url' => $url = 'http://example.com/image.jpg',
                 ])
         );
 
-        $this->assertEquals($src, $dto->main_image);
+        $this->assertEquals($url, $dto->main_image);
     }
 
     public function test_can_transform_post_main_image_upload(): void
@@ -80,11 +81,11 @@ class PostDataTest extends TestCase
             Post::factory()
                 ->for(Category::factory())
                 ->create([
-                    'main_image_upload' => $src = 'image.jpg',
+                    'main_image_upload' => $file = 'image.jpg',
                     'main_image_url' => null,
                 ])
         );
 
-        $this->assertEquals("/storage/{$src}", $dto->main_image);
+        $this->assertEquals(Storage::disk('public')->url($file), $dto->main_image);
     }
 }
