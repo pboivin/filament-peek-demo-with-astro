@@ -15,7 +15,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "pboivin/filament-peek": "2.x-dev"
+        "pboivin/filament-peek": "2.x-dev",
+        "spatie/laravel-data": "^3.8"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.9",
