@@ -16,5 +16,7 @@ const page = await getPage(slug);
 ---
 
 <Layout title={page.title}>
-    <PageContent page={page} />
+    <main>
+        <PageContent page={page} />
+    </main>
 </Layout>

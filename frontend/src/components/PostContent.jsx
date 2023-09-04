@@ -5,7 +5,7 @@ import RenderBlocks from './RenderBlocks.jsx';
 
 export default function PostContent({ post, category }) {
     return (
-        <main>
+        <div>
             <div class="relative min-h-[200px] flex items-center justify-center bg-black">
                 {post.main_image ? (
                     <div
@@ -44,6 +44,6 @@ export default function PostContent({ post, category }) {
                     )}
                 </div>
             </div>
-        </main>
+        </div>
     );
 }

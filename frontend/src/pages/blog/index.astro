@@ -10,5 +10,7 @@ const categories = await getCategories();
 ---
 
 <Layout title="Blog">
-    <PostList posts={posts} categories={categories} title="All Posts" activeCategory="" />
+    <main>
+        <PostList posts={posts} categories={categories} title="All Posts" activeCategory="" />
+    </main>
 </Layout>

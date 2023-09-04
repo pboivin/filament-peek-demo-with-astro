@@ -19,10 +19,12 @@ const category = categories.find((category) => category.slug === slug);
 ---
 
 <Layout title={category.name}>
-    <PostList
-        posts={posts}
-        categories={categories}
-        title={`Category: ${category.name}`}
-        activeCategory={category.slug}
-    />
+    <main>
+        <PostList
+            posts={posts}
+            categories={categories}
+            title={`Category: ${category.name}`}
+            activeCategory={category.slug}
+        />
+    </main>
 </Layout>
