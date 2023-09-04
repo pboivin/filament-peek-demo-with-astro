@@ -3,7 +3,7 @@ import { h, Fragment } from 'preact';
 import PostMeta from './PostMeta.jsx';
 import RenderBlocks from './RenderBlocks.jsx';
 
-export default function PostContent({ post, category }) {
+export default function PostContent({ post }) {
     return (
         <div>
             <div class="relative min-h-[200px] flex items-center justify-center bg-black">
@@ -29,7 +29,7 @@ export default function PostContent({ post, category }) {
 
                     <hr />
 
-                    <PostMeta date={post.published_at} categoryName={category?.name} categorySlug={category?.slug} />
+                    <PostMeta date={post.published_at} categoryName={post.category?.name} categorySlug={post.category?.slug} />
 
                     {post.footer_blocks && post.footer_blocks.length > 0 ? (
                         <div>

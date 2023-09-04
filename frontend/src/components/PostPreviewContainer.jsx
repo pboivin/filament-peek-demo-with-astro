@@ -17,7 +17,7 @@ export default function PostPreviewContainer() {
     return (
         <>
             {previewData ? (
-                <PostContent post={previewData.post} category={previewData.post.category} />
+                <PostContent post={previewData.post} />
             ) : (
                 <div class="p-8 text-center text-red-500">Not available</div>
             )}
