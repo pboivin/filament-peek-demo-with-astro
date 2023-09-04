@@ -1,6 +1,8 @@
 # filament-peek-demo-with-astro
 
-WIP
+**Work in progress**
+
+This is a remix of the [Peek demo project](https://github.com/pboivin/filament-peek-demo) , using [Astro.js](https://astro.build/) as a decoupled front-end layer.
 
 ## Local setup
 
@@ -9,6 +11,7 @@ Add the following entries to `/etc/hosts`:
 ```
 127.0.0.1    admin.acme.test
 127.0.0.1    front.acme.test
+127.0.0.1    media.acme.test
 ```
 
 #### Filament
