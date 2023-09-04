@@ -34,6 +34,7 @@ You can log into the admin at [admin.acme.test:8000/admin](http://admin.acme.tes
 
 ```sh
 cd frontend
+cp .env.example .env
 npm install
 npm run dev
 ```
