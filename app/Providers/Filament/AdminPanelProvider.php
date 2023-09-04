@@ -67,7 +67,6 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 NavigationGroup::make()->label('Blog'),
                 NavigationGroup::make()->label('Site'),
-                NavigationGroup::make()->label('Contact'),
             ]);
     }
 
