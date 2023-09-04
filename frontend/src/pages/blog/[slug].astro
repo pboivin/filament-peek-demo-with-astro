@@ -15,7 +15,7 @@ const { slug } = Astro.params;
 const post = await getPost(slug);
 ---
 
-<Layout title="Blog post">
+<Layout title={post.title}>
     <main>
         <PostContent post={post} />
     </main>
