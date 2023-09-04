@@ -21,6 +21,7 @@ const { title, hasHeaderBrand = true, isPreview = false } = Astro.props;
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
+        {isPreview ? <meta name="robots" content="noindex" /> : ''}
         <title>{title}</title>
         <style is:inline>
             [x-cloak] {
