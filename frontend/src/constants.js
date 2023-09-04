@@ -1,1 +1,1 @@
-export const API_BASE = 'http://admin.acme.test:8000';
+export const API_BASE = import.meta.env.API_BASE;
