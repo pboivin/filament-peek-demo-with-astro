@@ -48,11 +48,12 @@ Route::prefix('/content')->group(function () {
             ->map(fn ($post) => PostReferenceData::from($post));
     });
 
-    Route::get('/post/{id}', function (int $id) {
+    Route::get('/post/{slug}', function (string $slug) {
         abort_unless(
             $post = Post::published()
                 ->with('category')
-                ->find($id),
+                ->whereSlug($slug)
+                ->first(),
             404
         );
 

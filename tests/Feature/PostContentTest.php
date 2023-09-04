@@ -59,7 +59,7 @@ class PostContentTest extends TestCase
         ]);
 
         $response = $this
-            ->get('/content/post/' . $post->id)
+            ->get('/content/post/' . $post->slug)
             ->assertStatus(200);
 
         $this->assertEquals('Lorem ipsum', $response->json('title'));
