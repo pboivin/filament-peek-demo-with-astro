@@ -23,10 +23,7 @@ const { posts, categories, title, activeCategory } = Astro.props;
             <div>
                 <select
                     class="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm"
-                    x-data
-                    x-on:change={`
-                        window.location = $event.target.value ? ('/category/' + $event.target.value) : '/blog'
-                    `}
+                    onchange="window.location = this.value ? ('/category/' + this.value) : '/blog'"
                 >
                     <option value="">All categories</option>
                     {
