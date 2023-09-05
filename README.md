@@ -2,7 +2,7 @@
 
 **Work in progress**
 
-This is a remix of the [Filament Peek demo project](https://github.com/pboivin/filament-peek-demo), using [Astro.js](https://astro.build/) as a decoupled front-end.
+This is a remix of the [Filament Peek demo project](https://github.com/pboivin/filament-peek-demo), using [Astro](https://astro.build/) as a decoupled front-end.
 
 ## Local setup
 
