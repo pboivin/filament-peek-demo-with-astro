@@ -2,7 +2,9 @@
 
 **Work in progress**
 
-This is a remix of the [Filament Peek demo project](https://github.com/pboivin/filament-peek-demo), using [Astro](https://astro.build/) as a decoupled front-end.
+This is a demo project showcasing the [Peek](https://github.com/pboivin/filament-peek/) plugin for [Filament](https://filamentphp.com/).
+
+This version is a remix of the [main demo](https://github.com/pboivin/filament-peek-demo), using [Astro](https://astro.build/) as a decoupled front-end.
 
 ## Local setup
 
