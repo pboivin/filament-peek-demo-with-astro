@@ -1,8 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PostContent from '../../components/PostContent';
 
 import { getPost, getPosts } from '../../api/posts';
-import PostContent from '../../components/PostContent';
 
 export async function getStaticPaths() {
     const posts = await getPosts();
