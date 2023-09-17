@@ -17,7 +17,7 @@ rm -rf frontend/dist
 cp -ar storage/app/public frontend/dist/storage
 
 # Replace all media URLs
-find frontend/dist -type f -exec sed -i 's#https?://media.acme.test:8000/storage#/storage#g' {} \;
+find frontend/dist -type f -exec sed -i 's#https\?://media.acme.test:8000/storage#/storage#g' {} \;
 
 echo ""
 echo "Done! The site is ready to be deployed."
