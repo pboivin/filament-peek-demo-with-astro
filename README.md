@@ -6,6 +6,11 @@ This is a demo project showcasing the [Peek](https://github.com/pboivin/filament
 
 This version is a remix of the [main demo](https://github.com/pboivin/filament-peek-demo), using [Astro](https://astro.build/) as a decoupled front-end.
 
+## Requirements
+
+- PHP >= 8.1
+- Node >= 18
+
 ## Local setup
 
 Add the following entries to `/etc/hosts`:
