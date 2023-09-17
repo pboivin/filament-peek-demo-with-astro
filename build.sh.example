@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# ===================================================================
+#  Example exporting the local media storage with the frontend build
+# ===================================================================
+
+# Abort in case of error
+set -e
+
+# Cleanup
+rm -rf frontend/dist
+
+# Build static site
+(cd frontend && npm run build)
+
+# Copy media
+cp -ar storage/app/public frontend/dist/storage
+
+# Replace all media URLs
+find frontend/dist -type f -exec sed -i 's#https?://media.acme.test:8000/storage#/storage#g' {} \;
+
+echo ""
+echo "Done! The site is ready to be deployed."
+echo ""
