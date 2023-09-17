@@ -3,11 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "astro dev --host=0.0.0.0",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "astro preview --host=0.0.0.0"
   },
   "dependencies": {
     "@astrojs/preact": "^3.0.0",
