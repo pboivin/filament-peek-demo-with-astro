@@ -1,0 +1,10 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostPreviewContainer from '../../components/PostPreviewContainer.jsx';
+---
+
+<Layout title="Preview" isPreview={true}>
+    <main>
+        <PostPreviewContainer client:only />
+    </main>
+</Layout>

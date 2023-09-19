@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostContent from '../../components/PostContent';
+
+import { getPost, getPosts } from '../../api/posts';
+
+export async function getStaticPaths() {
+    const posts = await getPosts();
+
+    return posts.map(post => ({params: {slug: post.slug}}));
+}
+
+const { slug } = Astro.params;
+
+const post = await getPost(slug);
+---
+
+<Layout title={post.title}>
+    <main>
+        <PostContent post={post} />
+    </main>
+</Layout>

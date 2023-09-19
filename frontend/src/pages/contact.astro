@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.jsx';
+---
+
+<Layout title="Contact">
+    <main>
+        <div class="relative min-h-[200px] flex items-center justify-center bg-gray-100">
+            <div class="relative z-1 p-2 text-4xl text-gray-700 lg:text-6xl">
+                <h1>Contact Us</h1>
+            </div>
+        </div>
+
+        <div class="max-w-wide mx-auto p-2">
+            <ContactForm client:only />
+        </div>
+    </main>
+</Layout>

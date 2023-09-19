@@ -1,0 +1,59 @@
+---
+import PostCard from './PostCard.astro';
+
+interface Props {
+    posts: Array<any>;
+    categories: Array<any>;
+    title: string;
+    activeCategory: string;
+}
+
+const { posts, categories, title, activeCategory } = Astro.props;
+---
+
+<div>
+    <div class="relative min-h-[200px] flex items-center justify-center bg-gray-100">
+        <div class="relative z-1 p-2 text-4xl text-gray-700 lg:text-6xl">
+            <h1>{title}</h1>
+        </div>
+    </div>
+
+    <div class="max-w-wide mx-auto p-2">
+        <div class="mt-8 flex flex-col gap-4 lg:items-center lg:flex-row">
+            <div>
+                <select
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm"
+                    onchange="window.location = this.value ? ('/category/' + this.value) : '/blog'"
+                >
+                    <option value="">All categories</option>
+                    {
+                        categories.map((category) => (
+                            <option value={category.slug} selected={category.slug === activeCategory}>
+                                {category.name}
+                            </option>
+                        ))
+                    }
+                </select>
+            </div>
+
+            <div class="lg:ml-auto">Found {posts.length} posts</div>
+        </div>
+
+        <div class="mt-10 grid gap-8 grid-cols-1 lg:grid-cols-2">
+            {
+                posts.map((post) => (
+                    <div>
+                        <PostCard
+                            slug={post.slug}
+                            image={post.main_image}
+                            title={post.title}
+                            date={post.published_at}
+                            categoryName={post.category.name}
+                            categorySlug={post.category.slug}
+                        />
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</div>

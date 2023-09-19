@@ -1,0 +1,17 @@
+---
+import Menu from '../components/Menu.astro';
+
+import { getMenuItems } from '../api/menus.js';
+
+const footerMenuItems = await getMenuItems('footer');
+---
+
+<footer class="mt-auto text-center">
+    <div class="max-w-wide mx-auto p-2 text-gray-700">
+        <div class="flex flex-col lg:flex-row items-center justify-center space-x-4">
+            <span>Copyright © {new Date().getFullYear()} ACME inc.</span>
+
+            {footerMenuItems ? <Menu items={footerMenuItems} /> : ''}
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostList from '../../components/PostList.astro';
+
+import { getPostsForCategory } from '../../api/posts';
+import { getCategories } from '../../api/categories';
+
+export async function getStaticPaths() {
+    const categories = await getCategories();
+
+    return categories.map((category) => ({ params: { slug: category.slug } }));
+}
+
+const { slug } = Astro.params;
+
+const posts = await getPostsForCategory(slug);
+const categories = await getCategories();
+const category = categories.find((category) => category.slug === slug);
+---
+
+<Layout title={category.name}>
+    <main>
+        <PostList
+            posts={posts}
+            categories={categories}
+            title={`Category: ${category.name}`}
+            activeCategory={category.slug}
+        />
+    </main>
+</Layout>

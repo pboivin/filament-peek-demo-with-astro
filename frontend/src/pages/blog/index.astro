@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostList from '../../components/PostList.astro';
+
+import { getPosts } from '../../api/posts';
+import { getCategories } from '../../api/categories';
+
+const posts = await getPosts();
+const categories = await getCategories();
+---
+
+<Layout title="Blog">
+    <main>
+        <PostList posts={posts} categories={categories} title="All Posts" activeCategory="" />
+    </main>
+</Layout>
