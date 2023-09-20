@@ -23,11 +23,6 @@ const { title, hasHeaderBrand = true, isPreview = false } = Astro.props;
         <meta name="generator" content={Astro.generator} />
         {isPreview ? <meta name="robots" content="noindex" /> : ''}
         <title>{title}</title>
-        <style is:inline>
-            [x-cloak] {
-                display: none;
-            }
-        </style>
     </head>
 
     <body

@@ -4,12 +4,9 @@ module.exports = {
     theme: {
         extend: {
             maxWidth: {
-                'wide': '1200px',
+                wide: '1200px',
             },
         },
     },
-    plugins: [
-        require('@tailwindcss/forms'),
-        require('@tailwindcss/typography'),
-    ],
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
