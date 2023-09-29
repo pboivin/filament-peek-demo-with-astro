@@ -15,17 +15,9 @@ The approach chosen is to run both Filament and Astro locally for content entry,
 ## Requirements
 
 - PHP >= 8.1
-- Node >= 18
+- Node >= 18.0
 
 ## Local setup
-
-Add the following entries to `/etc/hosts`:
-
-```
-127.0.0.1    admin.acme.test
-127.0.0.1    front.acme.test
-127.0.0.1    media.acme.test
-```
 
 #### Filament
 
@@ -38,7 +30,7 @@ php artisan storage:link
 php artisan serve
 ```
 
-You can log into the admin at [admin.acme.test:8000/admin](http://admin.acme.test:8000/admin) with the following credentials:
+You can log into the admin at [localhost:8000/admin](http://localhost:8000/admin) with the following credentials:
 
 - Email: `admin@test.test`
 - Password: `admin@test.test`
@@ -52,4 +44,4 @@ npm install
 npm run dev
 ```
 
-You can access the site at [front.acme.test:3000](http://front.acme.test:3000)
+You can access the site at [localhost:3000](http://localhost:3000)
