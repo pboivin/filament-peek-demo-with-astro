@@ -1,7 +1,7 @@
 {
   "resources/css/filament/admin/theme.css": {
-    "file": "assets/theme-269eae53.css",
-    "src": "resources/css/filament/admin/theme.css",
-    "isEntry": true
+    "file": "assets/theme-97be94e2.css",
+    "isEntry": true,
+    "src": "resources/css/filament/admin/theme.css"
   }
 }
