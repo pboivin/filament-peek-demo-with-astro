@@ -1,6 +1,10 @@
-# filament-peek-demo-with-astro
 
-*(Work in progress)*
+> [!NOTE]  
+> **2024-08-29** - I'm archiving this repository. While this was a fun experiment and a good opportunity to learn Astro, I've found that this is not quite how I wish to develop websites. I hope the demo can still be useful as a learning tool. Feel free to [contact me](https://github.com/pboivin/filament-peek/discussions) if you have any questions.
+
+---
+
+# filament-peek-demo-with-astro
 
 A demo project showcasing the [Peek](https://github.com/pboivin/filament-peek/) plugin for [Filament](https://filamentphp.com/). This version is a remix of the [main demo](https://github.com/pboivin/filament-peek-demo), using [Astro](https://astro.build/) as a decoupled front-end.
 
